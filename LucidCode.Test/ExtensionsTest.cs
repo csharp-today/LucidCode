@@ -24,5 +24,25 @@ namespace LucidCode.Test
             // Assert
             result.ShouldBeTrue();
         }
+
+        [Fact]
+        public void NotIn_Negative()
+        {
+            // Act
+            var result = 5.NotIn(1, 2, 3, 4, 5);
+
+            // Assert
+            result.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotIn_Positive()
+        {
+            // Act
+            var result = 5.NotIn(1, 2, 3, 4);
+
+            // Assert
+            result.ShouldBeTrue();
+        }
     }
 }
