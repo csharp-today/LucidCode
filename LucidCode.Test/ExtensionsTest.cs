@@ -6,6 +6,26 @@ namespace LucidCode.Test
     public class ExtensionsTest
     {
         [Fact]
+        public void InCollection_Negative()
+        {
+            // Act
+            var result = 5.InCollection(new[] { 1, 2, 3 });
+
+            // Assert
+            result.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InCollection_Positive()
+        {
+            // Act
+            var result = 5.InCollection(new[] { 5 });
+
+            // Assert
+            result.ShouldBeTrue();
+        }
+
+        [Fact]
         public void In_Negative()
         {
             // Act
@@ -20,6 +40,26 @@ namespace LucidCode.Test
         {
             // Act
             var result = 5.In(1, 2, 3, 5, 7, 9);
+
+            // Assert
+            result.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void NotInCollection_Negative()
+        {
+            // Act
+            var result = 5.NotInCollection(new[] { 5 });
+
+            // Assert
+            result.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotInCollection_Positive()
+        {
+            // Act
+            var result = 5.NotInCollection(new[] { 1, 2, 3 });
 
             // Assert
             result.ShouldBeTrue();
