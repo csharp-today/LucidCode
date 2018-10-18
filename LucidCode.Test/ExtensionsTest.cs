@@ -46,6 +46,27 @@ namespace LucidCode.Test
         }
 
         [Fact]
+        public void IsNotNull_Negative()
+        {
+            // Act
+            object obj = null;
+            var result = obj.IsNotNull();
+
+            // Assert
+            result.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void IsNotNull_Positive()
+        {
+            // Act
+            var result = new object().IsNotNull();
+
+            // Assert
+            result.ShouldBeTrue();
+        }
+
+        [Fact]
         public void IsNull_Negative()
         {
             // Act
