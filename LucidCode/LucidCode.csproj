@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version Condition=" '$(BUILD_BUILDNUMBER)' == '' ">0.0.0-local</Version>
-    <Version Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</Version>
+    <Version Condition=" '$(LIBVERSION)' == '' ">0.0.0-local</Version>
+    <Version Condition=" '$(LIBVERSION)' != '' ">$(LIBVERSION)</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
