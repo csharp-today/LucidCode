@@ -1,4 +1,5 @@
 using Shouldly;
+using System.Collections.Generic;
 using Xunit;
 
 namespace LucidCode.Test
@@ -26,10 +27,33 @@ namespace LucidCode.Test
         }
 
         [Fact]
-        public void InCollection_Negative()
+        public void InArray_Negative()
         {
             // Act
-            var result = 5.InCollection(new[] { 1, 2, 3 });
+            var result = 5.In(new[] { 1, 2, 3 });
+
+            // Assert
+            result.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void InArray_Positive()
+        {
+            // Act
+            var result = 5.In(new[] { 5 });
+
+            // Assert
+            result.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void InCollection_Negative()
+        {
+            // Arrange
+            IEnumerable<int> collection = new[] { 1, 2, 3 };
+
+            // Act
+            var result = 5.In(collection);
 
             // Assert
             result.ShouldBeFalse();
@@ -38,8 +62,11 @@ namespace LucidCode.Test
         [Fact]
         public void InCollection_Positive()
         {
+            // Arrange
+            IEnumerable<int> collection = new[] { 5 };
+
             // Act
-            var result = 5.InCollection(new[] { 5 });
+            var result = 5.In(collection);
 
             // Assert
             result.ShouldBeTrue();
@@ -88,10 +115,33 @@ namespace LucidCode.Test
         }
 
         [Fact]
-        public void NotInCollection_Negative()
+        public void NotInArray_Negative()
         {
             // Act
-            var result = 5.NotInCollection(new[] { 5 });
+            var result = 5.NotIn(new[] { 5 });
+
+            // Assert
+            result.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void NotInArray_Positive()
+        {
+            // Act
+            var result = 5.NotIn(new[] { 1, 2, 3 });
+
+            // Assert
+            result.ShouldBeTrue();
+        }
+
+        [Fact]
+        public void NotInCollection_Negative()
+        {
+            // Arrange
+            IEnumerable<int> collection = new[] { 5 };
+
+            // Act
+            var result = 5.NotIn(collection);
 
             // Assert
             result.ShouldBeFalse();
@@ -100,8 +150,11 @@ namespace LucidCode.Test
         [Fact]
         public void NotInCollection_Positive()
         {
+            // Arrange
+            IEnumerable<int> collection = new[] { 1, 2, 3 };
+
             // Act
-            var result = 5.NotInCollection(new[] { 1, 2, 3 });
+            var result = 5.NotIn(collection);
 
             // Assert
             result.ShouldBeTrue();
