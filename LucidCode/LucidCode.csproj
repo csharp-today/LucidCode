@@ -4,6 +4,7 @@
     <Version Condition=" '$(LIBVERSION)' == '' ">0.0.0-local</Version>
     <Version Condition=" '$(LIBVERSION)' != '' ">$(LIBVERSION)</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
 </Project>
