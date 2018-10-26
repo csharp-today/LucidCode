@@ -15,7 +15,14 @@ namespace LucidCode
         /// </summary>
         public static bool In<T>(this T item, IEnumerable<T> collection) => collection.Contains(item);
 
+        /// <summary>
+        /// Returns true if item is not null
+        /// </summary>
         public static bool IsNotNull<T>(this T item) where T : class => !item.IsNull();
+
+        /// <summary>
+        /// Returns true if item is null
+        /// </summary>
         public static bool IsNull<T>(this T item) where T : class => item is null;
 
         /// <summary>
