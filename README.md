@@ -4,7 +4,7 @@ LucidCode is a library dedicated to improving code readability by exposing gener
 
 ## Extensions
 
-* **In** - Returns true if item is in collection array
-* **IsNotNull** - Returns true if item is not null
-* **IsNull** - Returns true if item is null
-* **NotIn** - Returns true if item is not in collection array
+* **In** - Returns true if object is in collection
+* **IsNotNull** - Returns true if object is not null
+* **IsNull** - Returns true if object is null
+* **NotIn** - Returns true if object is not in collection
