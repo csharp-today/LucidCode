@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace LucidCode
 {
+    /// <summary>
+    /// LucidCode extensions designed to improve code readability
+    /// </summary>
     public static class Extensions
     {
         /// <summary>
