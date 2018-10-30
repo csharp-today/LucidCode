@@ -7,6 +7,21 @@ namespace LucidCode.Test
     public class LucidTestTest
     {
         [Fact]
+        public void Act_Returns_Result()
+        {
+            // Arrange
+            const string ExpectedResult = "result";
+
+            // Act
+            var result = DefineExpected("expectedValue")
+                .Arrange(expected => "actParameter")
+                .Act(actParameter => ExpectedResult);
+
+            // Assert
+            result.ShouldBe(ExpectedResult);
+        }
+
+        [Fact]
         public void Arrange_Returns_Act_Parameters()
         {
             // Arrange
