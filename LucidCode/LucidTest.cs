@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LucidCode.LucidTestFundations;
+using System;
 
 namespace LucidCode
 {
@@ -10,36 +11,42 @@ namespace LucidCode
         /// <summary>
         /// Define expected value for the Assertion
         /// </summary>
-        /// <typeparam name="T">Type of expected value(s) object. Use anonymous type for multiple values.</typeparam>
-        /// <param name="expected">Expected value(s)</param>
-        /// <returns>Expected value(s)</returns>
+        /// <typeparam name="T">Type of expected value object. Use anonymous type for multiple values.</typeparam>
+        /// <param name="expected">Expected value</param>
+        /// <returns>Expected value</returns>
         public static T DefineExpected<T>(T expected) => expected;
 
         /// <summary>
-        /// Gets expected value(s) and prepare all Arrange actions
+        /// Gets expected value and prepare all Arrange actions
         /// </summary>
-        /// <typeparam name="TExpected">Type of expected value(s)</typeparam>
-        /// <typeparam name="TParams">Type of parameter(s) for Act. Use anonymous type for multiple values.</typeparam>
-        /// <param name="expected">Expected value(s)</param>
+        /// <typeparam name="TExpected">Type of expected value</typeparam>
+        /// <typeparam name="TParams">Type of parameter for Act. Use anonymous type for multiple values.</typeparam>
+        /// <param name="expected">Expected value</param>
         /// <param name="arrangeFunc">Arrange function</param>
-        /// <returns>Act parameter(s)</returns>
-        public static TParams Arrange<TExpected, TParams>(this TExpected expected, Func<TExpected, TParams> arrangeFunc) => arrangeFunc(expected);
+        /// <returns>ActBundle containing expected value and Act parameter</returns>
+        public static ActBundle<TExpected, TParams> Arrange<TExpected, TParams>(this TExpected expected, Func<TExpected, TParams> arrangeFunc)
+        {
+            var actParameter = arrangeFunc(expected);
+            var actBundle = new ActBundle<TExpected, TParams>(expected, actParameter);
+            return actBundle;
+        }
 
         /// <summary>
-        /// Gets Act parameter(s) and executes Act actions
+        /// Gets Act parameter and executes Act actions
         /// </summary>
-        /// <typeparam name="TParams">Type of parameter(s) for Act</typeparam>
-        /// <typeparam name="TResult">Type of result(s). Use anonymous type for multiple values.</typeparam>
-        /// <param name="actParameters">Act parameter(s)</param>
+        /// <typeparam name="TExpected">Tpe of expected value</typeparam>
+        /// <typeparam name="TParams">Type of parameter for Act</typeparam>
+        /// <typeparam name="TResult">Type of result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actParameters">Act parameter</param>
         /// <param name="actFunc">Act function</param>
-        /// <returns>Act result(s)</returns>
-        public static TResult Act<TParams, TResult>(this TParams actParameters, Func<TParams, TResult> actFunc) => actFunc(actParameters);
+        /// <returns>Act result</returns>
+        public static TResult Act<TExpected, TParams, TResult>(this ActBundle<TExpected, TParams> actParameters, Func<TParams, TResult> actFunc) => actFunc(actParameters.ActParameter);
 
         /// <summary>
-        /// Gets Act result(s) and execute Assert actions
+        /// Gets Act result and execute Assert actions
         /// </summary>
-        /// <typeparam name="TResult">Type of result(s)</typeparam>
-        /// <param name="actResult">Act result(s)</param>
+        /// <typeparam name="TResult">Type of result</typeparam>
+        /// <param name="actResult">Act result</param>
         /// <param name="assertAction">Assert action</param>
         public static void Assert<TResult>(this TResult actResult, Action<TResult> assertAction) => assertAction(actResult);
     }

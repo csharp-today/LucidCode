@@ -26,14 +26,16 @@ namespace LucidCode.Test
         public void Arrange_Returns_Act_Parameters()
         {
             // Arrange
-            const string ExpectedActParameter = "expected";
+            const string ExpectedValue = "someValue", ActParameter = "expected";
 
             // Act
-            var actParameter = DefineExpected("someValue")
-                .Arrange(expected => ExpectedActParameter);
+            var actBundle = DefineExpected(ExpectedValue)
+                .Arrange(expected => ActParameter);
 
             // Assert
-            actParameter.ShouldBe(ExpectedActParameter);
+            actBundle.ShouldNotBeNull();
+            actBundle.ExpectedValue.ShouldBe(ExpectedValue);
+            actBundle.ActParameter.ShouldBe(ActParameter);
         }
 
         [Fact]
