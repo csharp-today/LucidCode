@@ -34,5 +34,13 @@ namespace LucidCode
         /// <param name="actFunc">Act function</param>
         /// <returns>Act result(s)</returns>
         public static TResult Act<TParams, TResult>(this TParams actParameters, Func<TParams, TResult> actFunc) => actFunc(actParameters);
+
+        /// <summary>
+        /// Gets Act result(s) and execute Assert actions
+        /// </summary>
+        /// <typeparam name="TResult">Type of result(s)</typeparam>
+        /// <param name="actResult">Act result(s)</param>
+        /// <param name="assertAction">Assert action</param>
+        public static void Assert<TResult>(this TResult actResult, Action<TResult> assertAction) => assertAction(actResult);
     }
 }

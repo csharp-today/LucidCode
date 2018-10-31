@@ -1,4 +1,5 @@
 ﻿using Shouldly;
+using System;
 using Xunit;
 using static LucidCode.LucidTest;
 
@@ -33,6 +34,23 @@ namespace LucidCode.Test
 
             // Assert
             actParameter.ShouldBe(ExpectedActParameter);
+        }
+
+        [Fact]
+        public void Assert_Action()
+        {
+            // Arrange
+            bool assertionExecuted = false;
+            var assertAction = new Action<string>(_ => assertionExecuted = true);
+
+            // Act
+            DefineExpected("expectedValue")
+                .Arrange(expected => "actParameter")
+                .Act(actParameter => "result")
+                .Assert(assertAction);
+
+            // Assert
+            assertionExecuted.ShouldBeTrue();
         }
 
         [Fact]
