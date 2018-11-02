@@ -37,17 +37,23 @@ namespace LucidCode
         /// <typeparam name="TExpected">Tpe of expected value</typeparam>
         /// <typeparam name="TParams">Type of parameter for Act</typeparam>
         /// <typeparam name="TResult">Type of result. Use anonymous type for multiple values.</typeparam>
-        /// <param name="actParameters">Act parameter</param>
+        /// <param name="actParameters">Act bundle</param>
         /// <param name="actFunc">Act function</param>
         /// <returns>Act result</returns>
-        public static TResult Act<TExpected, TParams, TResult>(this ActBundle<TExpected, TParams> actParameters, Func<TParams, TResult> actFunc) => actFunc(actParameters.ActParameter);
+        public static AssertBundle<TExpected, TResult> Act<TExpected, TParams, TResult>(this ActBundle<TExpected, TParams> actParameters, Func<TParams, TResult> actFunc)
+        {
+            var result = actFunc(actParameters.ActParameter);
+            var assertBundle = new AssertBundle<TExpected, TResult>(actParameters.ExpectedValue, result);
+            return assertBundle;
+        }
 
         /// <summary>
         /// Gets Act result and execute Assert actions
         /// </summary>
+        /// <typeparam name="TExpectedValue">Type of expected value</typeparam>
         /// <typeparam name="TResult">Type of result</typeparam>
-        /// <param name="actResult">Act result</param>
+        /// <param name="assertBundle">Assert bundle</param>
         /// <param name="assertAction">Assert action</param>
-        public static void Assert<TResult>(this TResult actResult, Action<TResult> assertAction) => assertAction(actResult);
+        public static void Assert<TExpectedValue, TResult>(this AssertBundle<TExpectedValue, TResult> assertBundle, Action<TResult, TExpectedValue> assertAction) => assertAction(assertBundle.ActResult, assertBundle.ExpectedValue);
     }
 }

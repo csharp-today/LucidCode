@@ -11,15 +11,17 @@ namespace LucidCode.Test
         public void Act_Returns_Result()
         {
             // Arrange
-            const string ExpectedResult = "result";
+            const string Expected = "expectedValue", Result = "result";
 
             // Act
-            var result = DefineExpected("expectedValue")
+            var assertBndle = DefineExpected(Expected)
                 .Arrange(expected => "actParameter")
-                .Act(actParameter => ExpectedResult);
+                .Act(actParameter => Result);
 
             // Assert
-            result.ShouldBe(ExpectedResult);
+            assertBndle.ShouldNotBeNull();
+            assertBndle.ExpectedValue.ShouldBe(Expected);
+            assertBndle.ActResult.ShouldBe(Result);
         }
 
         [Fact]
@@ -42,17 +44,22 @@ namespace LucidCode.Test
         public void Assert_Action()
         {
             // Arrange
-            bool assertionExecuted = false;
-            var assertAction = new Action<string>(_ => assertionExecuted = true);
+            const string Expected = "expectedValue", Result = "result";
+            string expectedValue = null, resultValue = null;
 
             // Act
-            DefineExpected("expectedValue")
+            DefineExpected(Expected)
                 .Arrange(expected => "actParameter")
-                .Act(actParameter => "result")
-                .Assert(assertAction);
+                .Act(actParameter => Result)
+                .Assert((result, expected) =>
+                {
+                    resultValue = result;
+                    expectedValue = expected;
+                });
 
             // Assert
-            assertionExecuted.ShouldBeTrue();
+            expectedValue.ShouldBe(Expected);
+            resultValue.ShouldBe(Result);
         }
 
         [Fact]
