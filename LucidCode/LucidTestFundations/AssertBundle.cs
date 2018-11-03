@@ -1,4 +1,6 @@
-﻿namespace LucidCode.LucidTestFundations
+﻿using System;
+
+namespace LucidCode.LucidTestFundations
 {
     /// <summary>
     /// Bundle for Assert action
@@ -19,5 +21,11 @@
         /// <param name="result"></param>
         public AssertBundle(TExpectedValue expectedValue, TResult result)
             : base(expectedValue) => ActResult = result;
+
+        /// <summary>
+        /// Gets Act result and execute Assert actions
+        /// </summary>
+        /// <param name="assertAction">Assert action</param>
+        public void Assert(Action<TResult, TExpectedValue> assertAction) => assertAction(ActResult, ExpectedValue);
     }
 }

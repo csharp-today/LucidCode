@@ -1,4 +1,6 @@
-﻿namespace LucidCode.LucidTestFundations
+﻿using System;
+
+namespace LucidCode.LucidTestFundations
 {
     /// <summary>
     /// Bundle for Act action
@@ -19,5 +21,18 @@
         /// <param name="actParameter">Act parameter</param>
         public ActBundle(TExpectedValue expectedValue, TActParameter actParameter)
             : base(expectedValue) => ActParameter = actParameter;
+
+        /// <summary>
+        /// Gets Act parameter and executes Act actions
+        /// </summary>
+        /// <typeparam name="TResult">Type of result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actFunc">Act function</param>
+        /// <returns>Assert bundle with expected value and result</returns>
+        public AssertBundle<TExpectedValue, TResult> Act<TResult>(Func<TActParameter, TResult> actFunc)
+        {
+            var result = actFunc(ActParameter);
+            var assertBundle = new AssertBundle<TExpectedValue, TResult>(ExpectedValue, result);
+            return assertBundle;
+        }
     }
 }
