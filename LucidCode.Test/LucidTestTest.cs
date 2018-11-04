@@ -74,5 +74,20 @@ namespace LucidCode.Test
             // Assert
             definition.ShouldBe(expectedDefinition);
         }
+
+        [Fact]
+        public void Support_No_DefineExpected_Values()
+        {
+            // Arrange
+            string result = null;
+
+            // Act
+            Arrange(() => "paramValue")
+                .Act(param => param.ToUpper())
+                .Assert(r => result = r);
+
+            // Assert
+            result.ShouldNotBeNull();
+        }
     }
 }
