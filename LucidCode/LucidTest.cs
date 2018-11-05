@@ -40,6 +40,14 @@ namespace LucidCode
         }
 
         /// <summary>
+        /// Executes Act actions
+        /// </summary>
+        /// <typeparam name="TResult">Type of result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actFunc">Act function</param>
+        /// <returns>Act result</returns>
+        public static TResult Act<TResult>(Func<TResult> actFunc) => actFunc();
+
+        /// <summary>
         /// Gets Act parameter and executes Act actions
         /// </summary>
         /// <typeparam name="TActParam">Type of Act parameter</typeparam>

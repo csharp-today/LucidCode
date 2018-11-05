@@ -1,5 +1,4 @@
 ﻿using Shouldly;
-using System;
 using Xunit;
 using static LucidCode.LucidTest;
 
@@ -76,7 +75,7 @@ namespace LucidCode.Test
         }
 
         [Fact]
-        public void Support_No_DefineExpected_Values()
+        public void Support_No_DefineExpected()
         {
             // Arrange
             string result = null;
@@ -84,6 +83,20 @@ namespace LucidCode.Test
             // Act
             Arrange(() => "paramValue")
                 .Act(param => param.ToUpper())
+                .Assert(r => result = r);
+
+            // Assert
+            result.ShouldNotBeNull();
+        }
+
+        [Fact]
+        public void Support_No_DefineExpected_And_No_Arrange()
+        {
+            // Arrange
+            string result = null;
+
+            // Act
+            Act(() => "test")
                 .Assert(r => result = r);
 
             // Assert
