@@ -1,20 +1,28 @@
-﻿namespace LucidCode.LucidTestFundations
+﻿using System;
+
+namespace LucidCode.LucidTestFundations
 {
     /// <summary>
     /// Carrier of the expected value that will be used in Assert action
     /// </summary>
     /// <typeparam name="TExpectedValue">Type of expected value</typeparam>
-    public class ExpectedValueCarrier<TExpectedValue>
+    public class ExpectedValueCarrier<TExpectedValue> : BaseExpectedValue<TExpectedValue>
     {
-        /// <summary>
-        /// Expected value that will be used in Assert action
-        /// </summary>
-        public TExpectedValue ExpectedValue { get; }
+#pragma warning disable 1591
+        public ExpectedValueCarrier(TExpectedValue expectedValue) : base(expectedValue) { }
+#pragma warning restore 1591
 
         /// <summary>
-        /// ExpectedValueCarrier constructor
+        /// Gets expected value and prepare all Arrange actions
         /// </summary>
-        /// <param name="expectedValue">Expected value that will be used in Assert action</param>
-        public ExpectedValueCarrier(TExpectedValue expectedValue) => ExpectedValue = expectedValue;
+        /// <typeparam name="TActParam">Type of parameter for Act. Use anonymous type for multiple values.</typeparam>
+        /// <param name="arrangeFunc">Arrange function</param>
+        /// <returns>ActBundle containing expected value and Act parameter</returns>
+        public ActBundle<TExpectedValue, TActParam> Arrange<TActParam>(Func<TExpectedValue, TActParam> arrangeFunc)
+        {
+            var actParameter = arrangeFunc(ExpectedValue);
+            var actBundle = new ActBundle<TExpectedValue, TActParam>(ExpectedValue, actParameter);
+            return actBundle;
+        }
     }
 }

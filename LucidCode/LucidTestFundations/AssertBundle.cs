@@ -7,7 +7,7 @@ namespace LucidCode.LucidTestFundations
     /// </summary>
     /// <typeparam name="TExpectedValue">Type of expected value</typeparam>
     /// <typeparam name="TResult">Type of Act result</typeparam>
-    public class AssertBundle<TExpectedValue, TResult> : ExpectedValueCarrier<TExpectedValue>
+    public class AssertBundle<TExpectedValue, TResult> : BaseExpectedValue<TExpectedValue>
     {
         /// <summary>
         /// Act result
