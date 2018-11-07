@@ -19,6 +19,17 @@ namespace LucidCode
         /// <summary>
         /// Prepare all Arrange actions
         /// </summary>
+        /// <param name="arrangeAction">Arrange action</param>
+        /// <returns>MissingActParameter that represents no parameter for Act action</returns>
+        public static MissingActParameter Arrange(Action arrangeAction)
+        {
+            arrangeAction();
+            return MissingActParameter.Value;
+        }
+
+        /// <summary>
+        /// Prepare all Arrange actions
+        /// </summary>
         /// <typeparam name="TActParam">Type of parameter for Act. Use anonymous type for multiple values.</typeparam>
         /// <param name="arrangeFunc">Arrange function</param>
         /// <returns>Act parameter</returns>

@@ -35,5 +35,15 @@ namespace LucidCode.Test.LucidTestTests
             actParameter.ShouldNotBeNull();
             actParameter.ActParameter.ShouldBe(ActParameter);
         }
+
+        [Fact]
+        public void Arrange_Returns_EmptyActParameter()
+        {
+            // Act
+            var returnValue = LucidTest.Arrange(() => { });
+
+            // Assert
+            returnValue.ShouldBeOfType<MissingActParameter>();
+        }
     }
 }
