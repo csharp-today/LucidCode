@@ -13,7 +13,7 @@ namespace LucidCode.Test.LucidTestTests
             const string Expected = "expectedValue", Result = "result";
 
             // Act
-            AssertBundle<string, string> assertBndle = LucidTest.DefineExpected(Expected)
+            AssertManager<string, string> assertBndle = LucidTest.DefineExpected(Expected)
                 .Arrange(expected => "actParameter")
                 .Act(actParameter => Result);
 
@@ -27,7 +27,7 @@ namespace LucidCode.Test.LucidTestTests
         public void Act_Returns_ActResult()
         {
             // Act
-            ActResultCarrier<string> actResult = LucidTest.Arrange(() => "param")
+            AssertManager<string> actResult = LucidTest.Arrange(() => "param")
                 .Act(param => param.ToUpper());
 
             // Assert
@@ -42,7 +42,7 @@ namespace LucidCode.Test.LucidTestTests
             const string ExpectedResult = "result";
 
             // Act
-            ActResultCarrier<string> actResult = LucidTest.Act(() => ExpectedResult);
+            AssertManager<string> actResult = LucidTest.Act(() => ExpectedResult);
 
             // Assert
             actResult.ShouldNotBeNull();

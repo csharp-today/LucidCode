@@ -9,38 +9,38 @@ namespace LucidCode
     public static class LucidTest
     {
         /// <summary>
-        /// Define expected value for the Assertion
+        /// Define expected value for Arrange and Assert steps
         /// </summary>
         /// <typeparam name="TExpectedValue">Type of expected value object. Use anonymous type for multiple values.</typeparam>
         /// <param name="expected">Expected value</param>
-        /// <returns>Expected value</returns>
-        public static ExpectedValueCarrier<TExpectedValue> DefineExpected<TExpectedValue>(TExpectedValue expected) => new ExpectedValueCarrier<TExpectedValue>(expected);
+        /// <returns>Manager for Arrange step</returns>
+        public static ArrangeManager<TExpectedValue> DefineExpected<TExpectedValue>(TExpectedValue expected) => new ArrangeManager<TExpectedValue>(expected);
 
         /// <summary>
-        /// Prepare all Arrange actions
+        /// Execute Arrange step
         /// </summary>
         /// <param name="arrangeAction">Arrange action</param>
-        /// <returns>MissingActParameter that represents no parameter for Act action</returns>
-        public static MissingActParameter Arrange(Action arrangeAction)
+        /// <returns>Manager for Act step</returns>
+        public static LightActManager Arrange(Action arrangeAction)
         {
             arrangeAction();
-            return MissingActParameter.Value;
+            return new LightActManager();
         }
 
         /// <summary>
-        /// Prepare all Arrange actions
+        /// Execute Arrange step
         /// </summary>
-        /// <typeparam name="TActParam">Type of parameter for Act. Use anonymous type for multiple values.</typeparam>
+        /// <typeparam name="TActParam">Type of parameter for Act step. Use anonymous type for multiple values.</typeparam>
         /// <param name="arrangeFunc">Arrange function</param>
-        /// <returns>Act parameter</returns>
-        public static ActParameterCarrier<TActParam> Arrange<TActParam>(Func<TActParam> arrangeFunc) => new ActParameterCarrier<TActParam>(arrangeFunc());
+        /// <returns>Manager for Act step</returns>
+        public static ActManager<TActParam> Arrange<TActParam>(Func<TActParam> arrangeFunc) => new ActManager<TActParam>(arrangeFunc());
 
         /// <summary>
-        /// Executes Act actions
+        /// Execute Act step
         /// </summary>
-        /// <typeparam name="TResult">Type of result. Use anonymous type for multiple values.</typeparam>
+        /// <typeparam name="TResult">Type of Act result. Use anonymous type for multiple values.</typeparam>
         /// <param name="actFunc">Act function</param>
-        /// <returns>Act result</returns>
-        public static ActResultCarrier<TResult> Act<TResult>(Func<TResult> actFunc) => new ActResultCarrier<TResult>(actFunc());
+        /// <returns>Manager for Assert step</returns>
+        public static AssertManager<TResult> Act<TResult>(Func<TResult> actFunc) => new AssertManager<TResult>(actFunc());
     }
 }

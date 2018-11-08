@@ -13,7 +13,7 @@ namespace LucidCode.Test.LucidTestTests
             const string ExpectedValue = "someValue", ActParameter = "expected";
 
             // Act
-            ActBundle<string, string> actBundle = LucidTest.DefineExpected(ExpectedValue)
+            ActManager<string, string> actBundle = LucidTest.DefineExpected(ExpectedValue)
                 .Arrange(expected => ActParameter);
 
             // Assert
@@ -29,7 +29,7 @@ namespace LucidCode.Test.LucidTestTests
             const string ActParameter = "parameter";
 
             // Act
-            ActParameterCarrier<string> actParameter = LucidTest.Arrange(() => ActParameter);
+            ActManager<string> actParameter = LucidTest.Arrange(() => ActParameter);
 
             // Assert
             actParameter.ShouldNotBeNull();
@@ -43,7 +43,7 @@ namespace LucidCode.Test.LucidTestTests
             var returnValue = LucidTest.Arrange(() => { });
 
             // Assert
-            returnValue.ShouldBeOfType<MissingActParameter>();
+            returnValue.ShouldBeOfType<LightActManager>();
         }
     }
 }
