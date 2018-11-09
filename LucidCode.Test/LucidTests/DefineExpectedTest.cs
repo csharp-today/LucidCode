@@ -4,13 +4,13 @@ using Xunit;
 
 namespace LucidCode.Test.LucidTests
 {
-    public class EntryPointTest
+    public class DefineExpectedTest
     {
         [Fact]
-        public void DefineExpected_Returns_ArrangeManager()
+        public void ExpectedValue_Present_In_ArrangeManager()
         {
             // Arrange
-            const string ExpectedValue = "test";
+            const string ExpectedValue = "value";
 
             // Act
             ArrangeManager<string> manager = LucidTest.DefineExpected(ExpectedValue);
