@@ -67,6 +67,9 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
+        public void Act_Assert_Without_Act_Result() => NotImplemented();
+
+        [Fact]
         public void ExpectedValueAAA()
         {
             // Arrange
@@ -112,12 +115,24 @@ namespace LucidCode.Test.LucidTests
         public void ExpectedValue_Act_Assert()
         {
             // Arrange
-            string actResult = null;
+            string expectedValue = null, actResult = null;
 
             // Act
-            LucidTest.DefineExpected(ExpectedValue);
-            NotImplemented();
+            LucidTest.DefineExpected(ExpectedValue)
+                .Act(() => ExpectedActResult)
+                .Assert((result, expected) =>
+                {
+                    actResult = result;
+                    expectedValue = expected;
+                });
+
+            // Assert
+            expectedValue.ShouldBe(ExpectedValue);
+            actResult.ShouldBe(ExpectedActResult);
         }
+
+        [Fact]
+        public void ExpectedValue_Act_Assert_Without_Act_Result() => NotImplemented();
 
         private void NotImplemented()
         {

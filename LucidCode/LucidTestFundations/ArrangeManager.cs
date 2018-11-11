@@ -19,8 +19,21 @@ namespace LucidCode.LucidTestFundations
         public ActManager<TExpectedValue, TActParam> Arrange<TActParam>(Func<TExpectedValue, TActParam> arrangeFunc)
         {
             var actParameter = arrangeFunc(ExpectedValue);
-            var actBundle = new ActManager<TExpectedValue, TActParam>(ExpectedValue, actParameter);
-            return actBundle;
+            var manager = new ActManager<TExpectedValue, TActParam>(ExpectedValue, actParameter);
+            return manager;
+        }
+
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
+        /// <typeparam name="TActResult">Type of Act result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actFunc">Act function</param>
+        /// <returns>Manager for Assert step</returns>
+        public AssertManager<TExpectedValue, TActResult> Act<TActResult>(Func<TActResult> actFunc)
+        {
+            var actResult = actFunc();
+            var manager = new AssertManager<TExpectedValue, TActResult>(ExpectedValue, actResult);
+            return manager;
         }
     }
 }
