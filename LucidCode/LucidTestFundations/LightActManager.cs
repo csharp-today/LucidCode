@@ -1,4 +1,6 @@
-﻿namespace LucidCode.LucidTestFundations
+﻿using System;
+
+namespace LucidCode.LucidTestFundations
 {
     /// <summary>
     /// Manager for Act step
@@ -14,5 +16,18 @@
     public class LightActManager<TExpectedValue> : ExpectedValueManager<TExpectedValue>
     {
         internal LightActManager(TExpectedValue expectedValue) : base(expectedValue) { }
+
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
+        /// <typeparam name="TResult">Type of Act result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actFunc">Act function</param>
+        /// <returns>Manager for Assert step</returns>
+        public AssertManager<TExpectedValue, TResult> Act<TResult>(Func<TResult> actFunc)
+        {
+            var result = actFunc();
+            var manager = new AssertManager<TExpectedValue, TResult>(ExpectedValue, result);
+            return manager;
+        }
     }
 }

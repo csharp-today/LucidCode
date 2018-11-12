@@ -13,6 +13,18 @@ namespace LucidCode.LucidTestFundations
         /// <summary>
         /// Execute Arrange step
         /// </summary>
+        /// <param name="arrangeAction">Arrange action</param>
+        /// <returns>Manager for Act step</returns>
+        public LightActManager<TExpectedValue> Arrange(Action<TExpectedValue> arrangeAction)
+        {
+            arrangeAction(ExpectedValue);
+            var manager = new LightActManager<TExpectedValue>(ExpectedValue);
+            return manager;
+        }
+
+        /// <summary>
+        /// Execute Arrange step
+        /// </summary>
         /// <typeparam name="TActParam">Type of parameter for Act step. Use anonymous type for multiple values.</typeparam>
         /// <param name="arrangeFunc">Arrange function</param>
         /// <returns>Manager for Act step</returns>
