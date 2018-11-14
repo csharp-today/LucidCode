@@ -39,5 +39,26 @@ namespace LucidCode.Test.LucidTests
             manager.ExpectedValue.ShouldBe(ExpectedValue);
             manager.ActResult.ShouldBe(ExpectedResult);
         }
+
+        [Fact]
+        public void ExpectedValue_Present_In_LightActManager()
+        {
+            // Arrange
+            const string ExpectedValue = "expected";
+            bool expectedValuePresent = false;
+
+            // Act
+            LightActManager<string> manager =
+                LucidTest.DefineExpected(ExpectedValue)
+                .Arrange(expected =>
+                {
+                    expectedValuePresent = expected == ExpectedValue;
+                });
+
+            // Assert
+            expectedValuePresent.ShouldBeTrue();
+            manager.ShouldNotBeNull();
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
+        }
     }
 }

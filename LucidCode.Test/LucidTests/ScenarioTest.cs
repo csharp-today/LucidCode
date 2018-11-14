@@ -37,8 +37,12 @@ namespace LucidCode.Test.LucidTests
             string actResult = null;
 
             // Act
-            LucidTest.Arrange(() => { });
-            NotImplemented();
+            LucidTest.Arrange(() => { })
+                .Act(() => ExpectedActResult)
+                .Assert(result => actResult = result);
+
+            // Assert
+            actResult.ShouldBe(ExpectedActResult);
         }
 
         [Fact]

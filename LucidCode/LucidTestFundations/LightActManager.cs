@@ -7,6 +7,18 @@ namespace LucidCode.LucidTestFundations
     /// </summary>
     public class LightActManager
     {
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
+        /// <typeparam name="TResult">Type of Act result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actFunc">Act function</param>
+        /// <returns>Manager for Assert step</returns>
+        public AssertManager<TResult> Act<TResult>(Func<TResult> actFunc)
+        {
+            var result = actFunc();
+            var manager = new AssertManager<TResult>(result);
+            return manager;
+        }
     }
 
     /// <summary>
