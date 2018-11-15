@@ -25,6 +25,23 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
+        public void LightAssertManager()
+        {
+            // Arrange
+            const string ExpectedParam = "param";
+            bool actExecuted = false;
+
+            // Act
+            object manager =
+                LucidTest.Arrange(() => ExpectedParam)
+                .Act(p => { actExecuted = p == ExpectedParam; });
+
+            // Assert
+            actExecuted.ShouldBeTrue();
+            manager.ShouldBeOfType<LightAssertManager>();
+        }
+
+        [Fact]
         public void Result_Present_In_AssertManager()
         {
             // Arrange

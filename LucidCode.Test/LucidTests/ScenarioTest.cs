@@ -55,8 +55,13 @@ namespace LucidCode.Test.LucidTests
             bool executedAct = false, executedAssert = false;
 
             // Act
-            LucidTest.Arrange(() => ExpectedActParam);
-            NotImplemented();
+            LucidTest.Arrange(() => ExpectedActParam)
+                .Act(p => { executedAct = p == ExpectedActParam; })
+                .Assert(() => executedAssert = true);
+
+            // Assert
+            executedAct.ShouldBeTrue();
+            executedAssert.ShouldBeTrue();
         }
 
         [Fact]

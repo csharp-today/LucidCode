@@ -22,6 +22,17 @@ namespace LucidCode.LucidTestFundations
         /// <param name="actFunc">Act function</param>
         /// <returns>Manager for Assert step</returns>
         public AssertManager<TResult> Act<TResult>(Func<TActParameter, TResult> actFunc) => new AssertManager<TResult>(actFunc(ActParameter));
+
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
+        /// <param name="actFunc">Act action</param>
+        /// <returns>Manager for Assert step</returns>
+        public LightAssertManager Act(Action<TActParameter> actFunc)
+        {
+            actFunc(ActParameter);
+            return new LightAssertManager();
+        }
     }
 
     /// <summary>
