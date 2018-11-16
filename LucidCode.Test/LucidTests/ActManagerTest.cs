@@ -6,35 +6,38 @@ namespace LucidCode.Test.LucidTests
 {
     public class ActManagerTest
     {
+        private const string ExpectedActParam = "param", ExpectedActResult = "result";
+
         [Fact]
-        public void ExpectedValue_And_Result_Present_In_AssertManager()
+        public void ActManager_Provides_AssertManager()
         {
             // Arrange
-            const string ExpectedValue = "value", ExpectedResult = "result";
+            bool actExecuted = false;
 
             // Act
-            AssertManager<string, string> manager =
-                LucidTest.DefineExpected(ExpectedValue)
-                .Arrange(_ => "param")
-                .Act(_ => ExpectedResult);
+            AssertManager<string> manager =
+                new ActManager<string>(ExpectedActParam)
+                .Act(param =>
+                {
+                    actExecuted = param == ExpectedActParam;
+                    return ExpectedActResult;
+                });
 
             // Assert
             manager.ShouldNotBeNull();
-            manager.ExpectedValue.ShouldBe(ExpectedValue);
-            manager.ActResult.ShouldBe(ExpectedResult);
+            manager.ActResult.ShouldBe(ExpectedActResult);
         }
 
         [Fact]
-        public void LightAssertManager()
+        public void ActManager_Provides_LigthAssertManager()
         {
             // Arrange
-            const string ExpectedParam = "param";
             bool actExecuted = false;
 
             // Act
             object manager =
-                LucidTest.Arrange(() => ExpectedParam)
-                .Act(p => { actExecuted = p == ExpectedParam; });
+                new ActManager<string>(ExpectedActParam)
+                .Act(param => { actExecuted = param == ExpectedActParam; });
 
             // Assert
             actExecuted.ShouldBeTrue();
@@ -42,19 +45,26 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
-        public void Result_Present_In_AssertManager()
+        public void ActManager_With_ExpectedValue_Provides_AssertManager()
         {
             // Arrange
-            const string ExpectedResult = "result";
+            const string ExpectedValue = "value";
+            bool actExecuted = false;
 
             // Act
-            AssertManager<string> manager =
-                LucidTest.Arrange(() => "param")
-                .Act(_ => ExpectedResult);
+            AssertManager<string, string> manager =
+                new ActManager<string, string>(ExpectedValue, ExpectedActParam)
+                .Act(param =>
+                {
+                    actExecuted = param == ExpectedActParam;
+                    return ExpectedActResult;
+                });
 
             // Assert
+            actExecuted.ShouldBeTrue();
             manager.ShouldNotBeNull();
-            manager.ActResult.ShouldBe(ExpectedResult);
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
+            manager.ActResult.ShouldBe(ExpectedActResult);
         }
     }
 }
