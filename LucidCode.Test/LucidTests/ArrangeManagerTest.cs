@@ -6,45 +6,58 @@ namespace LucidCode.Test.LucidTests
 {
     public class ArrangeManagerTest
     {
+        private const string ExpectedValue = "value";
+
         [Fact]
-        public void ExpectedValue_And_ActParameter_Present_In_ActManager()
+        public void ArrangeManager_Provides_ActManager()
         {
             // Arrange
-            const string ExpectedValue = "value", ExpectedParameter = "param";
+            const string ExpectedParameter = "param";
+            bool arrangeExecutedFine = false;
 
             // Act
             ActManager<string, string> manager =
-                LucidTest.DefineExpected(ExpectedValue)
-                .Arrange(_ => ExpectedParameter);
+                new ArrangeManager<string>(ExpectedValue)
+                .Arrange(expected =>
+                {
+                    arrangeExecutedFine = expected == ExpectedValue;
+                    return ExpectedParameter;
+                });
 
             // Assert
+            arrangeExecutedFine.ShouldBeTrue();
             manager.ShouldNotBeNull();
             manager.ExpectedValue.ShouldBe(ExpectedValue);
             manager.ActParameter.ShouldBe(ExpectedParameter);
         }
 
         [Fact]
-        public void ExpectedValue_And_ActResult_Present_In_AssertManager()
+        public void ArrangeManager_Provides_AssertManager()
         {
             // Arrange
-            const string ExpectedValue = "value", ExpectedResult = "result";
+            const string ExpectedResult = "result";
+            bool actExecutedFine = false;
 
             // Act
             AssertManager<string, string> manager =
-                LucidTest.DefineExpected(ExpectedValue)
-                .Act(() => ExpectedResult);
+                new ArrangeManager<string>(ExpectedValue)
+                .Act(() =>
+                {
+                    actExecutedFine = true;
+                    return ExpectedResult;
+                });
 
             // Assert
+            actExecutedFine.ShouldBeTrue();
             manager.ShouldNotBeNull();
             manager.ExpectedValue.ShouldBe(ExpectedValue);
             manager.ActResult.ShouldBe(ExpectedResult);
         }
 
         [Fact]
-        public void ExpectedValue_Present_In_LightActManager()
+        public void ArrangeManager_Provides_LightActManager()
         {
             // Arrange
-            const string ExpectedValue = "expected";
             bool expectedValuePresent = false;
 
             // Act
