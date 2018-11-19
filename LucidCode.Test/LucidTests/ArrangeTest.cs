@@ -7,24 +7,30 @@ namespace LucidCode.Test.LucidTests
     public class ArrangeTest
     {
         [Fact]
-        public void Act_Parameter_Present_In_ActManager()
+        public void Arrange_Provides_ActManager()
         {
             // Arrange
             const string ExpectedParameter = "param";
+            bool arrangeExecutedFine = false;
 
             // Act
-            ActManager<string> manager = LucidTest.Arrange(() => ExpectedParameter);
+            ActManager<string> manager = LucidTest.Arrange(() =>
+            {
+                arrangeExecutedFine = true;
+                return ExpectedParameter;
+            });
 
             // Assert
+            arrangeExecutedFine.ShouldBeTrue();
             manager.ShouldNotBeNull();
             manager.ActParameter.ShouldBe(ExpectedParameter);
         }
 
         [Fact]
-        public void Arrange_Returns_LightActManager()
+        public void Arrange_Provides_LightActManager()
         {
             // Act
-            var manager = LucidTest.Arrange(() => { });
+            object manager = LucidTest.Arrange(() => { });
 
             // Assert
             manager.ShouldBeOfType<LightActManager>();
