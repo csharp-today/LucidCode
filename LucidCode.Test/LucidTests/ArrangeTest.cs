@@ -29,10 +29,14 @@ namespace LucidCode.Test.LucidTests
         [Fact]
         public void Arrange_Provides_LightActManager()
         {
+            // Arrange
+            bool executed = false;
+
             // Act
-            object manager = LucidTest.Arrange(() => { });
+            object manager = LucidTest.Arrange(() => { executed = true; });
 
             // Assert
+            executed.ShouldBeTrue();
             manager.ShouldBeOfType<LightActManager>();
         }
     }
