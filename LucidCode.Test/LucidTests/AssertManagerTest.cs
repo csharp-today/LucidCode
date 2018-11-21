@@ -1,15 +1,17 @@
-﻿using Shouldly;
+﻿using LucidCode.LucidTestFundations;
+using Shouldly;
 using Xunit;
 
 namespace LucidCode.Test.LucidTests
 {
     public class AssertManagerTest
     {
+        private const string ExpectedResult = "result";
+
         [Fact]
         public void Has_Act_Result()
         {
             // Arrange
-            const string ExpectedResult = "result";
             string actResult = null;
 
             // Act
@@ -24,13 +26,11 @@ namespace LucidCode.Test.LucidTests
         public void Has_Expected_Value_And_Act_Result()
         {
             // Arrange
-            const string ExpectedValue = "value", ExpectedResult = "result";
+            const string ExpectedValue = "value";
             string expectedValue = null, actResult = null;
 
             // Act
-            LucidTest.DefineExpected(ExpectedValue)
-                .Arrange(_ => "param")
-                .Act(_ => ExpectedResult)
+            new AssertManager<string, string>(ExpectedValue, ExpectedResult)
                 .Assert((result, expected) =>
                 {
                     expectedValue = expected;
