@@ -18,5 +18,23 @@ namespace LucidCode.Test.LucidTests
             // Assert
             executed.ShouldBeTrue();
         }
+
+        [Fact]
+        public void Execute_Assert_Step_With_ExpectedValue()
+        {
+            // Arrange
+            const string ExpectedValue = "value";
+            bool executedFine = false;
+
+            // Act
+            new LightAssertManager<string>(ExpectedValue)
+                .Assert(expected =>
+                {
+                    executedFine = expected == ExpectedValue;
+                });
+
+            // Assert
+            executedFine.ShouldBeTrue();
+        }
     }
 }

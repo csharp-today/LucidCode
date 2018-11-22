@@ -6,7 +6,9 @@ namespace LucidCode.Test.LucidTests
 {
     public class ActManagerTest
     {
-        private const string ExpectedActParam = "param", ExpectedActResult = "result";
+        private const string ExpectedActParam = "param",
+            ExpectedActResult = "result",
+            ExpectedValue = "value";
 
         [Fact]
         public void ActManager_Provides_AssertManager()
@@ -48,7 +50,6 @@ namespace LucidCode.Test.LucidTests
         public void ActManager_With_ExpectedValue_Provides_AssertManager()
         {
             // Arrange
-            const string ExpectedValue = "value";
             bool actExecuted = false;
 
             // Act
@@ -65,6 +66,26 @@ namespace LucidCode.Test.LucidTests
             manager.ShouldNotBeNull();
             manager.ExpectedValue.ShouldBe(ExpectedValue);
             manager.ActResult.ShouldBe(ExpectedActResult);
+        }
+
+        [Fact]
+        public void ActManager_With_ExpectedValue_Provides_LightAssertManager()
+        {
+            // Arrange
+            bool actExecutedFine = false;
+
+            // Act
+            LightAssertManager<string> manager =
+                new ActManager<string, string>(ExpectedValue, ExpectedActParam)
+                .Act(param =>
+                {
+                    actExecutedFine = param == ExpectedActParam;
+                });
+
+            // Assert
+            actExecutedFine.ShouldBeTrue();
+            manager.ShouldNotBeNull();
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
         }
     }
 }

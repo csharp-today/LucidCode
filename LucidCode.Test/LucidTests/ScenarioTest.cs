@@ -130,10 +130,18 @@ namespace LucidCode.Test.LucidTests
         [Fact]
         public void ExpectedValueAAA_Without_Act_Result()
         {
+            // Arrange
+            bool actExecutedFine = false, assertExecutedFine = false;
+
             // Act
             LucidTest.DefineExpected(ExpectedValue)
-                .Arrange(value => value == ExpectedValue ? ExpectedActParam : "");
-            NotImplemented();
+                .Arrange(value => value == ExpectedValue ? ExpectedActParam : "")
+                .Act(param => { actExecutedFine = param == ExpectedActParam; })
+                .Assert(expected => { assertExecutedFine = expected == ExpectedValue; });
+
+            // Assert
+            actExecutedFine.ShouldBeTrue();
+            assertExecutedFine.ShouldBeTrue();
         }
 
         [Fact]
