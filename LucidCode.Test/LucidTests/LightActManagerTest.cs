@@ -30,6 +30,22 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
+        public void LightActManager_Provides_LightAssertManager()
+        {
+            // Arrange
+            bool actExecutedFine = false;
+
+            // Act
+            LightAssertManager manager =
+                new LightActManager()
+                .Act(() => { actExecutedFine = true; });
+
+            // Assert
+            manager.ShouldNotBeNull();
+            actExecutedFine.ShouldBeTrue();
+        }
+
+        [Fact]
         public void LightActManager_With_ExpectedValue_Provides_AssertManager()
         {
             // Arrange

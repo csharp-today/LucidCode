@@ -46,7 +46,21 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
-        public void AAA_Without_Act_Parameter_And_Result() => NotImplemented();
+        public void AAA_Without_Act_Parameter_And_Result()
+        {
+            // Arrange
+            bool arrangeExecutedFine = false, actExecutedFine = false, assertExecutedFine = false;
+
+            // Act
+            LucidTest.Arrange(() => { arrangeExecutedFine = true; })
+                .Act(() => { actExecutedFine = true; })
+                .Assert(() => { assertExecutedFine = true; });
+
+            // Assert
+            arrangeExecutedFine.ShouldBeTrue();
+            actExecutedFine.ShouldBeTrue();
+            assertExecutedFine.ShouldBeTrue();
+        }
 
         [Fact]
         public void AAA_Without_Act_Result()
