@@ -38,6 +38,18 @@ namespace LucidCode
         /// <summary>
         /// Execute Act step
         /// </summary>
+        /// <param name="actAction">Act action</param>
+        /// <returns>Manager for Assert step</returns>
+        public static LightAssertManager Act(Action actAction)
+        {
+            actAction();
+            var manager = new LightAssertManager();
+            return manager;
+        }
+
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
         /// <typeparam name="TResult">Type of Act result. Use anonymous type for multiple values.</typeparam>
         /// <param name="actFunc">Act function</param>
         /// <returns>Manager for Assert step</returns>

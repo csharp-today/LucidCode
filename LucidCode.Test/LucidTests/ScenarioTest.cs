@@ -93,7 +93,19 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
-        public void Act_Assert_Without_Act_Result() => NotImplemented();
+        public void Act_Assert_Without_Act_Result()
+        {
+            // Arrange
+            bool actExecutedFine = false, assertExecutedFine = false;
+
+            // Act
+            LucidTest.Act(() => { actExecutedFine = true; })
+                .Assert(() => { assertExecutedFine = true; });
+
+            // Assert
+            actExecutedFine.ShouldBeTrue();
+            assertExecutedFine.ShouldBeTrue();
+        }
 
         [Fact]
         public void ExpectedValueAAA()
