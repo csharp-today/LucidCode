@@ -7,6 +7,7 @@ namespace LucidCode.Test.LucidTests
     public class LightActManagerTest
     {
         private const string ExpectedResult = "value";
+        private const string ExpectedValue = "value";
 
         [Fact]
         public void LightActManager_Provides_AssertManager()
@@ -49,7 +50,6 @@ namespace LucidCode.Test.LucidTests
         public void LightActManager_With_ExpectedValue_Provides_AssertManager()
         {
             // Arrange
-            const string ExpectedValue = "value";
             bool actExecutedFine = false;
 
             // Act
@@ -66,6 +66,23 @@ namespace LucidCode.Test.LucidTests
             manager.ShouldNotBeNull();
             manager.ExpectedValue.ShouldBe(ExpectedValue);
             manager.ActResult.ShouldBe(ExpectedResult);
+        }
+
+        [Fact]
+        public void LightActManager_With_ExpectedValue_Provides_LightAssertManagetr()
+        {
+            // Arrange
+            bool actExecutedFine = false;
+
+            // Act
+            LightAssertManager<string> manager =
+                new LightActManager<string>(ExpectedValue)
+                .Act(() => { actExecutedFine = true; });
+
+            // Assert
+            manager.ShouldNotBeNull();
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
+            actExecutedFine.ShouldBeTrue();
         }
     }
 }
