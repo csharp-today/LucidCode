@@ -10,11 +10,6 @@ namespace LucidCode.Test.LucidTests
             ExpectedActParam = "param",
             ExpectedActResult = "result";
 
-        // Temporary work-around to keep track of all scenarios.
-        // Don't want to break CI pipeline because of not implemented scenarios.
-        // Switch to true for local development to see outstanding work.
-        private readonly bool ThrowErrorsForNotImplementedScenarios = false;
-
         [Fact]
         public void AAA()
         {
@@ -206,14 +201,19 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
-        public void ExpectedValue_Act_Assert_Without_Act_Result() => NotImplemented();
-
-        private void NotImplemented()
+        public void ExpectedValue_Act_Assert_Without_Act_Result()
         {
-            if (ThrowErrorsForNotImplementedScenarios)
-            {
-                throw new NotImplementedException();
-            }
+            // Arrange
+            bool actExecutedFine = false, assertExecutedFine = false;
+
+            // Act
+            LucidTest.DefineExpected(ExpectedValue)
+                .Act(() => { actExecutedFine = true; })
+                .Assert(expected => { assertExecutedFine = expected == ExpectedValue; });
+
+            // Assert
+            actExecutedFine.ShouldBeTrue();
+            assertExecutedFine.ShouldBeTrue();
         }
     }
 }

@@ -73,5 +73,22 @@ namespace LucidCode.Test.LucidTests
             manager.ShouldNotBeNull();
             manager.ExpectedValue.ShouldBe(ExpectedValue);
         }
+
+        [Fact]
+        public void ArrangeManager_Provides_LightAssertManager()
+        {
+            // Arrange
+            bool actExecutedFine = false;
+
+            // Act
+            LightAssertManager<string> manager =
+                new ArrangeManager<string>(ExpectedValue)
+                .Act(() => { actExecutedFine = true; });
+
+            // Assert
+            manager.ShouldNotBeNull();
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
+            actExecutedFine.ShouldBeTrue();
+        }
     }
 }
