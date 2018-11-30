@@ -113,7 +113,7 @@ namespace LucidCode.Test.LucidTests
             LucidTest.DefineExpected(ExpectedValue)
                 .Arrange(expected => expected == ExpectedValue ? ExpectedActParam : "")
                 .Act(param => param == ExpectedActParam ? ExpectedActResult : "")
-                .Assert((result, expected) =>
+                .Assert((expected, result) =>
                 {
                     expectedValue = expected;
                     actResult = result;
@@ -134,7 +134,7 @@ namespace LucidCode.Test.LucidTests
             LucidTest.DefineExpected(ExpectedValue)
                 .Arrange(_ => { })
                 .Act(() => ExpectedActResult)
-                .Assert((result, expected) =>
+                .Assert((expected, result) =>
                 {
                     expectedValue = expected;
                     actResult = result;
@@ -189,7 +189,7 @@ namespace LucidCode.Test.LucidTests
             // Act
             LucidTest.DefineExpected(ExpectedValue)
                 .Act(() => ExpectedActResult)
-                .Assert((result, expected) =>
+                .Assert((expected, result) =>
                 {
                     actResult = result;
                     expectedValue = expected;

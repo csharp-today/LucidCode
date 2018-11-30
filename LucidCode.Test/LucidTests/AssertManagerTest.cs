@@ -31,7 +31,7 @@ namespace LucidCode.Test.LucidTests
 
             // Act
             new AssertManager<string, string>(ExpectedValue, ExpectedResult)
-                .Assert((result, expected) =>
+                .Assert((expected, result) =>
                 {
                     expectedValue = expected;
                     actResult = result;

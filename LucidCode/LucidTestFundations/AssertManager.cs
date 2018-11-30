@@ -41,6 +41,6 @@ namespace LucidCode.LucidTestFundations
         /// Execute Assert step
         /// </summary>
         /// <param name="assertAction">Assert action</param>
-        public void Assert(Action<TResult, TExpectedValue> assertAction) => assertAction(ActResult, ExpectedValue);
+        public void Assert(Action<TExpectedValue, TResult> assertAction) => assertAction(ExpectedValue, ActResult);
     }
 }
