@@ -47,5 +47,5 @@ Next good pattern is to avoid comments by writing readable and self-explanable c
                 return UserId;
             })
             .Act(userId => _nameProvider.GetUserName(userId))
-            .Assert((result, expected) => result.ShouldBe(expected));
+            .Assert((expected, result) => result.ShouldBe(expected));
 ```
