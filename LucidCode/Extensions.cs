@@ -37,5 +37,10 @@ namespace LucidCode
         /// Returns true if object is not in collection
         /// </summary>
         public static bool NotIn<T>(this T item, IEnumerable<T> collection) => !item.In(collection);
+
+        /// <summary>
+        /// Returns null if string is empty, otherwise the string value
+        /// </summary>
+        public static string ToNullIfEmpty(this string value) => string.IsNullOrEmpty(value) ? null : value;
     }
 }
