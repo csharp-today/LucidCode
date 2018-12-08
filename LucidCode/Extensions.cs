@@ -42,5 +42,12 @@ namespace LucidCode
         /// Returns null if string is empty, otherwise the string value
         /// </summary>
         public static string ToNullIfEmpty(this string value) => string.IsNullOrEmpty(value) ? null : value;
+
+        /// <summary>
+        /// Returns null if string is white space, otherwise the string value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string ToNullIfWhiteSpace(this string value) => string.IsNullOrWhiteSpace(value) ? null : value;
     }
 }
