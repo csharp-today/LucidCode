@@ -24,9 +24,19 @@ namespace LucidCode
         public static bool IsNotNull<T>(this T item) where T : class => !item.IsNull();
 
         /// <summary>
+        /// Returns true if object is not null
+        /// </summary>
+        public static bool IsNotNull<T>(this T? item) where T : struct => !item.IsNull();
+
+        /// <summary>
         /// Returns true if object is null
         /// </summary>
         public static bool IsNull<T>(this T item) where T : class => item is null;
+
+        /// <summary>
+        /// Returns true if object is null
+        /// </summary>
+        public static bool IsNull<T>(this T? item) where T : struct => item is null;
 
         /// <summary>
         /// Returns true if object is not in collection
