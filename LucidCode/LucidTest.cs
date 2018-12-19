@@ -17,6 +17,14 @@ namespace LucidCode
         public static ArrangeManager<TExpectedValue> DefineExpected<TExpectedValue>(TExpectedValue expected) => new ArrangeManager<TExpectedValue>(expected);
 
         /// <summary>
+        /// Define expected value for Arrange and Assert steps
+        /// </summary>
+        /// <typeparam name="TExpectedValue">Type of expected value object. Use anonymous type for multiple values.</typeparam>
+        /// <param name="expectedFunc">Function returning expected value</param>
+        /// <returns>Manager for Arrange step</returns>
+        public static ArrangeManager<TExpectedValue> DefineExpected<TExpectedValue>(Func<TExpectedValue> expectedFunc) => DefineExpected<TExpectedValue>(expectedFunc());
+
+        /// <summary>
         /// Execute Arrange step
         /// </summary>
         /// <param name="arrangeAction">Arrange action</param>
