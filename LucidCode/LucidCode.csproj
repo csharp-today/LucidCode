@@ -7,8 +7,4 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="dotnet tool install -g MarkdownCodeEmbed || dotnet tool update -g MarkdownCodeEmbed&#xD;&#xA;MarkdownCodeEmbed --input ..\DocForCodeEmbed --code .. --output .." />
-  </Target>
-
 </Project>
