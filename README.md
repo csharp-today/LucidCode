@@ -4,10 +4,9 @@ LucidCode is a library dedicated to improving code readability.
 
 ## Extensions
 
-* **[In](in.md)** - Returns true if object is in collection
+* **[In](In.md)** / **[NotIn](NotIn.md)** - Checks if object is in collection
 * **IsNotNull** - Returns true if object is not null
 * **IsNull** - Returns true if object is null
-* **NotIn** - Returns true if object is not in collection
 
 ## LucidTest - Arrange Act Assert pattern
 
