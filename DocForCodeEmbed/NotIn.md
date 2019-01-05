@@ -1,6 +1,6 @@
 # LucidCode
 
-## **NotIn** extension
+## **NotIn** extension method
 
 **Description:** Returns true if object is NOT in collection
 

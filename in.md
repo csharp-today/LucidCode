@@ -1,6 +1,6 @@
 # LucidCode
 
-## **In** extension
+## **In** extension method
 
 **Description:** Returns true if object is in collection
 

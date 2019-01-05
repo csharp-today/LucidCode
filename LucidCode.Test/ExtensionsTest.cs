@@ -29,17 +29,6 @@ namespace LucidCode.Test
             .Assert(result => result.ShouldBeTrue());
 
         [Fact]
-        public void IsNull_Negative() => LucidTest
-            .Act(() => new object().IsNull())
-            .Assert(result => result.ShouldBeFalse());
-
-        [Fact]
-        public void IsNull_Positive() => LucidTest
-            .Arrange(() => (object)null)
-            .Act(obj => obj.IsNull())
-            .Assert(result => result.ShouldBeTrue());
-
-        [Fact]
         public void ToNullIfEmpty_Empty() => LucidTest
             .Act(() => "".ToNullIfEmpty())
             .Assert(result => result.ShouldBeNull());
