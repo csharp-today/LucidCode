@@ -6,6 +6,7 @@ LucidCode is a library dedicated to improving code readability.
 
 * **[In](In.md)** / **[NotIn](NotIn.md)** - Check if object is in collection
 * **[IsNull](IsNull.md)** / **[IsNotNull](IsNotNull.md)** - Check if object is null
+* **[ToNullIfEmpty](ToNullIfEmpty.md)** - Return null if string is empty string
 
 ## LucidTest - Arrange Act Assert pattern
 
