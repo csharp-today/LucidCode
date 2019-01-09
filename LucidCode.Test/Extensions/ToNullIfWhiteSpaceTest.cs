@@ -1,10 +1,9 @@
-using Shouldly;
-using System.Collections.Generic;
+﻿using Shouldly;
 using Xunit;
 
-namespace LucidCode.Test
+namespace LucidCode.Test.Extensions
 {
-    public class ExtensionsTest
+    public class ToNullIfWhiteSpaceTest
     {
         [Fact]
         public void ToNullIfWhiteSpace_NotWhiteSpace() => LucidTest
