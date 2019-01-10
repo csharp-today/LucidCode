@@ -42,7 +42,7 @@ namespace Examples.Extensions
 
 ```
 
-Unit tests included in the LucidCode framework for this extension:
+Unit tests included in the LucidCode library for this extension:
 
 ```csharp
 using Shouldly;
