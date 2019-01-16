@@ -4,10 +4,10 @@ LucidCode is a library dedicated to improving code readability.
 
 ## Extension methods
 
-* **[In](In.md)** / **[NotIn](NotIn.md)** - Check if object is in collection
-* **[IsNull](IsNull.md)** / **[IsNotNull](IsNotNull.md)** - Check if object is null
-* **[ToNullIfEmpty](ToNullIfEmpty.md)** - Return null if string is empty string
-* **[ToNullIfWhiteSpace](ToNullIfWhiteSpace.md)** - Return null if string is white space
+* **[In](Docs\Extensions\In.md)** / **[NotIn](Docs\Extensions\NotIn.md)** - Check if object is in collection
+* **[IsNull](Docs\Extensions\IsNull.md)** / **[IsNotNull](Docs\Extensions\IsNotNull.md)** - Check if object is null
+* **[ToNullIfEmpty](Docs\Extensions\ToNullIfEmpty.md)** - Return null if string is empty string
+* **[ToNullIfWhiteSpace](Docs\Extensions\ToNullIfWhiteSpace.md)** - Return null if string is white space
 
 ## LucidTest - Arrange Act Assert pattern
 
