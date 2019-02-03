@@ -14,11 +14,11 @@
     <Company>Mariusz Bojkowski</Company>
     <Authors>Mariusz Bojkowski</Authors>
     <Description>
-      LucidCode is a library dedicated to improving code readability.
-      The library contains following extension methods: In / NotIn, IsNull / IsNotNull, ToNullIfEmpty, ToNullIfWhiteSpace
+LucidCode is a library dedicated to improving code readability.
+The library contains following extension methods: In / NotIn, IsNull / IsNotNull, ToNullIfEmpty, ToNullIfWhiteSpace
 
-      LucidTest is set of classes to support Arrange Act Assert pattern
-      Full documentation is available here: https://github.com/csharp-today/LucidCode
+LucidTest is set of classes to support Arrange Act Assert pattern
+Full documentation is available here: https://github.com/csharp-today/LucidCode
     </Description>
   </PropertyGroup>
 
