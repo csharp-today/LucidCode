@@ -19,7 +19,7 @@
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="dotnet tool install -g MarkdownCodeEmbed || dotnet tool update -g MarkdownCodeEmbed" />
-    <Exec Command="MarkdownCodeEmbed --input ..\DocForCodeEmbed --code .. --output ..\Docs" />
+    <Exec Command="MarkdownCodeEmbed --input ..\Docs\RawDocumentationSource --code .. --output .." />
   </Target>
 
 </Project>
