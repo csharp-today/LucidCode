@@ -2,6 +2,8 @@
 
 LucidCode is a library dedicated to improving code readability.
 
+[![Build Status](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_apis/build/status/csharp-today.LucidCode?branchName=master)](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_build/latest?definitionId=8&branchName=master) [![NuGet Version](https://img.shields.io/nuget/v/LucidCode)](https://www.nuget.org/packages/LucidCode/) [![NuGet Downloads](https://img.shields.io/nuget/dt/LucidCode)](https://www.nuget.org/packages/LucidCode/)
+
 ## Extension methods
 
 * **[In](Docs/Extensions/In.md)** / **[NotIn](Docs/Extensions/NotIn.md)** - Check if object is in collection
