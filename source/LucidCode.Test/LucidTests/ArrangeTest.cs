@@ -1,5 +1,6 @@
 ﻿using LucidCode.LucidTestFundations;
 using Shouldly;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace LucidCode.Test.LucidTests
@@ -34,6 +35,24 @@ namespace LucidCode.Test.LucidTests
 
             // Act
             object manager = LucidTest.Arrange(() => { executed = true; });
+
+            // Assert
+            executed.ShouldBeTrue();
+            manager.ShouldBeOfType<LightActManager>();
+        }
+
+        [Fact]
+        public async Task ArrangeAsync_Provides_LightActManager()
+        {
+            // Arrange
+            bool executed = false;
+
+            // Act
+            object manager = await LucidTest.ArrangeAsync(() =>
+            {
+                executed = true;
+                return Task.CompletedTask;
+            });
 
             // Assert
             executed.ShouldBeTrue();

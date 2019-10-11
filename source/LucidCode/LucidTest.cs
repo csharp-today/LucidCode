@@ -1,5 +1,6 @@
 ﻿using LucidCode.LucidTestFundations;
 using System;
+using System.Threading.Tasks;
 
 namespace LucidCode
 {
@@ -42,6 +43,17 @@ namespace LucidCode
         /// <param name="arrangeFunc">Arrange function</param>
         /// <returns>Manager for Act step</returns>
         public static ActManager<TActParam> Arrange<TActParam>(Func<TActParam> arrangeFunc) => new ActManager<TActParam>(arrangeFunc());
+
+        /// <summary>
+        /// Execute Arrange step asynchronously
+        /// </summary>
+        /// <param name="arrangeAction">Arrange function</param>
+        /// <returns>Manager for Act step</returns>
+        public static async Task<LightActManager> ArrangeAsync(Func<Task> arrangeAction)
+        {
+            await arrangeAction();
+            return new LightActManager();
+        }
 
         /// <summary>
         /// Execute Act step
