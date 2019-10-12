@@ -56,6 +56,18 @@ namespace LucidCode
         }
 
         /// <summary>
+        /// Execute Arrange step asynchronously
+        /// </summary>
+        /// <typeparam name="TActParam">Type of parameter for Act step. Use anonymous type for multiple values.</typeparam>
+        /// <param name="arrangeFunc">Arrange function</param>
+        /// <returns>Manager for Act step</returns>
+        public static async Task<ActManager<TActParam>> ArrangeAsync<TActParam>(Func<Task<TActParam>> arrangeFunc)
+        {
+            var actParameter = await arrangeFunc();
+            return new ActManager<TActParam>(actParameter);
+        }
+
+        /// <summary>
         /// Execute Act step
         /// </summary>
         /// <param name="actAction">Act action</param>

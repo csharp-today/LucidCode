@@ -42,6 +42,26 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
+        public async Task ArrangeAsync_Provides_ActManager()
+        {
+            // Arrange
+            const string ExpectedParameter = "param";
+            bool arrangeExecutedFine = false;
+
+            // Act
+            ActManager<string> manager = await LucidTest.ArrangeAsync(() =>
+            {
+                arrangeExecutedFine = true;
+                return Task.FromResult(ExpectedParameter);
+            });
+
+            // Assert
+            arrangeExecutedFine.ShouldBeTrue();
+            manager.ShouldNotBeNull();
+            manager.ActParameter.ShouldBe(ExpectedParameter);
+        }
+
+        [Fact]
         public async Task ArrangeAsync_Provides_LightActManager()
         {
             // Arrange
