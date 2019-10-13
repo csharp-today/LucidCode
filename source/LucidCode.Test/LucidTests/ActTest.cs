@@ -1,5 +1,6 @@
 ﻿using LucidCode.LucidTestFundations;
 using Shouldly;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace LucidCode.Test.LucidTests
@@ -35,6 +36,24 @@ namespace LucidCode.Test.LucidTests
             // Act
             LightAssertManager manager =
                 LucidTest.Act(() => { actExecutedFine = true; });
+
+            // Assert
+            manager.ShouldNotBeNull();
+            actExecutedFine.ShouldBeTrue();
+        }
+
+        [Fact]
+        public async Task ActAsync_Provides_LightAssertManager()
+        {
+            // Arrange
+            bool actExecutedFine = false;
+
+            // Act
+            LightAssertManager manager = await LucidTest.ActAsync(() =>
+                {
+                    actExecutedFine = true;
+                    return Task.CompletedTask;
+                });
 
             // Assert
             manager.ShouldNotBeNull();

@@ -86,5 +86,16 @@ namespace LucidCode
         /// <param name="actFunc">Act function</param>
         /// <returns>Manager for Assert step</returns>
         public static AssertManager<TResult> Act<TResult>(Func<TResult> actFunc) => new AssertManager<TResult>(actFunc());
+
+        /// <summary>
+        /// Execute Act step asynchronously
+        /// </summary>
+        /// <param name="actAction">Act action</param>
+        /// <returns>Manager for Assert step</returns>
+        public static async Task<LightAssertManager> ActAsync(Func<Task> actAction)
+        {
+            await actAction();
+            return new LightAssertManager();
+        }
     }
 }
