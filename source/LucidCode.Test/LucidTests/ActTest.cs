@@ -43,6 +43,26 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
+        public async Task ActAsync_Provides_AssertManager()
+        {
+            // Arrange
+            const string ExpectedResult = "result";
+            bool actExecuted = false;
+
+            // Act
+            AssertManager<string> manager = await LucidTest.ActAsync(() =>
+            {
+                actExecuted = true;
+                return Task.FromResult(ExpectedResult);
+            });
+
+            // Assert
+            actExecuted.ShouldBeTrue();
+            manager.ShouldNotBeNull();
+            manager.ActResult.ShouldBe(ExpectedResult);
+        }
+
+        [Fact]
         public async Task ActAsync_Provides_LightAssertManager()
         {
             // Arrange

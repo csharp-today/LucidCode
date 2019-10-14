@@ -97,5 +97,17 @@ namespace LucidCode
             await actAction();
             return new LightAssertManager();
         }
+
+        /// <summary>
+        /// Execute Act step asynchronously
+        /// </summary>
+        /// <typeparam name="TResult">Type of Act result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actFunc">Act function</param>
+        /// <returns>Manager for Assert step</returns>
+        public static async Task<AssertManager<TResult>> ActAsync<TResult>(Func<Task<TResult>> actFunc)
+        {
+            var assertParameter = await actFunc();
+            return new AssertManager<TResult>(assertParameter);
+        }
     }
 }
