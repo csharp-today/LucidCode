@@ -19,4 +19,10 @@ Full documentation is available here: https://github.com/csharp-today/LucidCode
     </Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="LucidTestExtensions.LightActManager.cs">
+      <DependentUpon>LucidTestExtensions.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
