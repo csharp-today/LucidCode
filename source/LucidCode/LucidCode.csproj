@@ -20,7 +20,7 @@ Full documentation is available here: https://github.com/csharp-today/LucidCode
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="LucidTestExtensions.LightActManager.cs">
+    <Compile Update="LucidTestExtensions.*.cs">
       <DependentUpon>LucidTestExtensions.cs</DependentUpon>
     </Compile>
   </ItemGroup>
