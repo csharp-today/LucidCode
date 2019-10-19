@@ -1,5 +1,6 @@
 ﻿using LucidCode.LucidTestFundations;
 using Shouldly;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace LucidCode.Test.LucidTests
@@ -31,6 +32,26 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
+        public async Task ActManager_Provides_AssertManager_Async()
+        {
+            // Arrange
+            bool actExecuted = false;
+
+            // Act
+            AssertManager<string> manager = await
+                new ActManager<string>(ExpectedActParam)
+                .ActAsync(param =>
+                {
+                    actExecuted = param == ExpectedActParam;
+                    return Task.FromResult(ExpectedActResult);
+                });
+
+            // Assert
+            manager.ShouldNotBeNull();
+            //manager.ActResult.ShouldBe(ExpectedActResult);
+        }
+
+        [Fact]
         public void ActManager_Provides_LigthAssertManager()
         {
             // Arrange
@@ -40,6 +61,26 @@ namespace LucidCode.Test.LucidTests
             object manager =
                 new ActManager<string>(ExpectedActParam)
                 .Act(param => { actExecuted = param == ExpectedActParam; });
+
+            // Assert
+            actExecuted.ShouldBeTrue();
+            manager.ShouldBeOfType<LightAssertManager>();
+        }
+
+        [Fact]
+        public async Task ActManager_Provides_LigthAssertManager_Async()
+        {
+            // Arrange
+            bool actExecuted = false;
+
+            // Act
+            object manager = await
+                new ActManager<string>(ExpectedActParam)
+                .ActAsync(param =>
+                {
+                    actExecuted = param == ExpectedActParam;
+                    return Task.CompletedTask;
+                });
 
             // Assert
             actExecuted.ShouldBeTrue();

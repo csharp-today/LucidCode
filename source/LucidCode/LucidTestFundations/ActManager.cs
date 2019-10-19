@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace LucidCode.LucidTestFundations
 {
@@ -31,6 +32,29 @@ namespace LucidCode.LucidTestFundations
         public LightAssertManager Act(Action<TActParameter> actFunc)
         {
             actFunc(ActParameter);
+            return new LightAssertManager();
+        }
+
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
+        /// <typeparam name="TResult">Type of Act result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actFunc">Act function</param>
+        /// <returns>Manager for Assert step</returns>
+        public async Task<AssertManager<TResult>> ActAsync<TResult>(Func<TActParameter, Task<TResult>> actFunc)
+        {
+            var assertParameter = await actFunc(ActParameter);
+            return new AssertManager<TResult>(assertParameter);
+        }
+
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
+        /// <param name="actFunc">Act action</param>
+        /// <returns>Manager for Assert step</returns>
+        public async Task<LightAssertManager> ActAsync(Func<TActParameter, Task> actFunc)
+        {
+            await actFunc(ActParameter);
             return new LightAssertManager();
         }
     }
