@@ -1,5 +1,6 @@
 ﻿using LucidCode.LucidTestFundations;
 using Shouldly;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace LucidCode.Test.LucidTests
@@ -17,6 +18,24 @@ namespace LucidCode.Test.LucidTests
             // Act
             LucidTest.Act(() => ExpectedResult)
                 .Assert(result => actResult = result);
+
+            // Assert
+            actResult.ShouldBe(ExpectedResult);
+        }
+
+        [Fact]
+        public async Task Has_Act_Result_Async()
+        {
+            // Arrange
+            string actResult = null;
+
+            // Act
+            await LucidTest.Act(() => ExpectedResult)
+                .AssertAsync(result =>
+                {
+                    actResult = result;
+                    return Task.CompletedTask;
+                });
 
             // Assert
             actResult.ShouldBe(ExpectedResult);
