@@ -23,7 +23,16 @@ namespace LucidCode
         /// <typeparam name="TExpectedValue">Type of expected value object. Use anonymous type for multiple values.</typeparam>
         /// <param name="expectedFunc">Function returning expected value</param>
         /// <returns>Manager for Arrange step</returns>
-        public static ArrangeManager<TExpectedValue> DefineExpected<TExpectedValue>(Func<TExpectedValue> expectedFunc) => DefineExpected<TExpectedValue>(expectedFunc());
+        public static ArrangeManager<TExpectedValue> DefineExpected<TExpectedValue>(Func<TExpectedValue> expectedFunc) => DefineExpected(expectedFunc());
+
+        /// <summary>
+        /// Define expected value for Arrange and Assert steps
+        /// </summary>
+        /// <typeparam name="TExpectedValue">Type of expected value object. Use anonymous type for multiple values.</typeparam>
+        /// <param name="expectedFunc">Function returning expected value</param>
+        /// <returns>Manager for Arrange step</returns>
+        public static async Task<ArrangeManager<TExpectedValue>> DefineExpectedAsync<TExpectedValue>(Func<Task<TExpectedValue>> expectedFunc) =>
+            DefineExpected(await expectedFunc());
 
         /// <summary>
         /// Execute Arrange step
