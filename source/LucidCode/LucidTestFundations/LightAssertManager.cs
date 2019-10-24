@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace LucidCode.LucidTestFundations
 {
@@ -12,6 +13,12 @@ namespace LucidCode.LucidTestFundations
         /// </summary>
         /// <param name="assertAction">Assert action</param>
         public void Assert(Action assertAction) => assertAction();
+
+        /// <summary>
+        /// Execute Assert step
+        /// </summary>
+        /// <param name="assertAction">Assert action</param>
+        public Task AssertAsync(Func<Task> assertAction) => assertAction();
     }
 
     /// <summary>

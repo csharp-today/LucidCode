@@ -11,7 +11,19 @@ namespace LucidCode
         /// </summary>
         /// <param name="manager">Assert manager</param>
         /// <param name="assertAction">Assert action</param>
-        public static async Task AssertAsync(this Task<LightAssertManager> manager, Action assertAction) =>
+        public static async Task AssertAsync(
+            this Task<LightAssertManager> manager,
+            Action assertAction) =>
             (await manager).Assert(assertAction);
+
+        /// <summary>
+        /// Execute Assert step
+        /// </summary>
+        /// <param name="manager">Light Assert manager</param>
+        /// <param name="assertAction">Assert action</param>
+        public static async Task AssertAsync(
+            this Task<LightAssertManager> manager,
+            Func<Task> assertAction) =>
+            await (await manager).AssertAsync(assertAction);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LucidCode.LucidTestFundations;
 using Shouldly;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace LucidCode.Test.LucidTests
@@ -14,6 +15,23 @@ namespace LucidCode.Test.LucidTests
 
             // Act
             new LightAssertManager().Assert(() => executed = true);
+
+            // Assert
+            executed.ShouldBeTrue();
+        }
+
+        [Fact]
+        public async Task Execute_Assert_Step_Async()
+        {
+            // Arrange
+            bool executed = false;
+
+            // Act
+            await new LightAssertManager().AssertAsync(() =>
+            {
+                executed = true;
+                return Task.CompletedTask;
+            });
 
             // Assert
             executed.ShouldBeTrue();
