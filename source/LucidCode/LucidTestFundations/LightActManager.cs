@@ -89,5 +89,28 @@ namespace LucidCode.LucidTestFundations
             var manager = new AssertManager<TExpectedValue, TResult>(ExpectedValue, result);
             return manager;
         }
+
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
+        /// <param name="actAction">Act action</param>
+        /// <returns>Manager for Assert step</returns>
+        public async Task<LightAssertManager<TExpectedValue>> ActAsync(Func<Task> actAction)
+        {
+            await actAction();
+            return new LightAssertManager<TExpectedValue>(ExpectedValue);
+        }
+
+        /// <summary>
+        /// Execute Act step
+        /// </summary>
+        /// <typeparam name="TResult">Type of Act result. Use anonymous type for multiple values.</typeparam>
+        /// <param name="actFunc">Act function</param>
+        /// <returns>Manager for Assert step</returns>
+        public async Task<AssertManager<TExpectedValue, TResult>> ActAsync<TResult>(Func<Task<TResult>> actFunc)
+        {
+            var result = await actFunc();
+            return new AssertManager<TExpectedValue, TResult>(ExpectedValue, result);
+        }
     }
 }

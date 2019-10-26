@@ -111,6 +111,28 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
+        public async Task LightActManager_With_ExpectedValue_Provides_AssertManager_Async()
+        {
+            // Arrange
+            bool actExecutedFine = false;
+
+            // Act
+            AssertManager<string, string> manager =
+                await new LightActManager<string>(ExpectedValue)
+                .ActAsync(() =>
+                {
+                    actExecutedFine = true;
+                    return Task.FromResult(ExpectedResult);
+                });
+
+            // Assert
+            actExecutedFine.ShouldBeTrue();
+            manager.ShouldNotBeNull();
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
+            manager.ActResult.ShouldBe(ExpectedResult);
+        }
+
+        [Fact]
         public void LightActManager_With_ExpectedValue_Provides_LightAssertManagetr()
         {
             // Arrange
@@ -125,6 +147,27 @@ namespace LucidCode.Test.LucidTests
             manager.ShouldNotBeNull();
             manager.ExpectedValue.ShouldBe(ExpectedValue);
             actExecutedFine.ShouldBeTrue();
+        }
+
+        [Fact]
+        public async Task LightActManager_With_ExpectedValue_Provides_LightAssertManagetr_Async()
+        {
+            // Arrange
+            bool actExecutedFine = false;
+
+            // Act
+            LightAssertManager<string> manager =
+                await new LightActManager<string>(ExpectedValue)
+                .ActAsync(() =>
+                {
+                    actExecutedFine = true;
+                    return Task.CompletedTask;
+                });
+
+            // Assert
+            actExecutedFine.ShouldBeTrue();
+            manager.ShouldNotBeNull();
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
         }
     }
 }
