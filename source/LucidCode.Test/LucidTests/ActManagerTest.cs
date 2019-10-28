@@ -110,6 +110,28 @@ namespace LucidCode.Test.LucidTests
         }
 
         [Fact]
+        public async Task ActManager_With_ExpectedValue_Provides_AssertManager_Async()
+        {
+            // Arrange
+            bool actExecuted = false;
+
+            // Act
+            AssertManager<string, string> manager =
+                await new ActManager<string, string>(ExpectedValue, ExpectedActParam)
+                .ActAsync(param =>
+                {
+                    actExecuted = param == ExpectedActParam;
+                    return Task.FromResult(ExpectedActResult);
+                });
+
+            // Assert
+            actExecuted.ShouldBeTrue();
+            manager.ShouldNotBeNull();
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
+            manager.ActResult.ShouldBe(ExpectedActResult);
+        }
+
+        [Fact]
         public void ActManager_With_ExpectedValue_Provides_LightAssertManager()
         {
             // Arrange
@@ -121,6 +143,27 @@ namespace LucidCode.Test.LucidTests
                 .Act(param =>
                 {
                     actExecutedFine = param == ExpectedActParam;
+                });
+
+            // Assert
+            actExecutedFine.ShouldBeTrue();
+            manager.ShouldNotBeNull();
+            manager.ExpectedValue.ShouldBe(ExpectedValue);
+        }
+
+        [Fact]
+        public async Task ActManager_With_ExpectedValue_Provides_LightAssertManager_Async()
+        {
+            // Arrange
+            bool actExecutedFine = false;
+
+            // Act
+            LightAssertManager<string> manager =
+                await new ActManager<string, string>(ExpectedValue, ExpectedActParam)
+                .ActAsync(param =>
+                {
+                    actExecutedFine = param == ExpectedActParam;
+                    return Task.CompletedTask;
                 });
 
             // Assert
