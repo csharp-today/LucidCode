@@ -34,5 +34,11 @@ namespace LucidCode.LucidTestFundations
         /// </summary>
         /// <param name="assertAction">Assert action</param>
         public void Assert(Action<TExpectedValue> assertAction) => assertAction(ExpectedValue);
+
+        /// <summary>
+        /// Execute Assert step
+        /// </summary>
+        /// <param name="assertAction">Assert action</param>
+        public Task AssertAsync(Func<TExpectedValue, Task> assertAction) => assertAction(ExpectedValue);
     }
 }
