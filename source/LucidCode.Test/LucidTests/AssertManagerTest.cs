@@ -60,5 +60,26 @@ namespace LucidCode.Test.LucidTests
             expectedValue.ShouldBe(ExpectedValue);
             actResult.ShouldBe(ExpectedResult);
         }
+
+        [Fact]
+        public async Task Has_Expected_Value_And_Act_Result_Async()
+        {
+            // Arrange
+            const string ExpectedValue = "value";
+            string expectedValue = null, actResult = null;
+
+            // Act
+            await new AssertManager<string, string>(ExpectedValue, ExpectedResult)
+                .AssertAsync((expected, result) =>
+                {
+                    expectedValue = expected;
+                    actResult = result;
+                    return Task.CompletedTask;
+                });
+
+            // Assert
+            expectedValue.ShouldBe(ExpectedValue);
+            actResult.ShouldBe(ExpectedResult);
+        }
     }
 }
