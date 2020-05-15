@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LucidCode
@@ -47,6 +48,19 @@ namespace LucidCode
         /// Returns true if object is not in collection
         /// </summary>
         public static bool NotIn<T>(this T item, IEnumerable<T> collection) => !item.In(collection);
+
+        /// <summary>
+        /// Execute action on an item and return the item
+        /// </summary>
+        /// <typeparam name="T">Item type</typeparam>
+        /// <param name="item">Item</param>
+        /// <param name="action">Set action for the item</param>
+        /// <returns>The same item</returns>
+        public static T Set<T>(this T item, Action<T> action)
+        {
+            action(item);
+            return item;
+        }
 
         /// <summary>
         /// Returns null if string is empty, otherwise the string value
