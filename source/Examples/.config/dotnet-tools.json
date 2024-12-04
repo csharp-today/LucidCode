@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "markdowncodeembed": {
+      "version": "0.2.3",
+      "commands": [
+        "MarkdownCodeEmbed"
+      ],
+      "rollForward": false
+    }
+  }
+}

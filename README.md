@@ -2,7 +2,7 @@
 
 LucidCode is a library dedicated to improving code readability.
 
-Article on my blog: https://csharp.today/post/11728
+Article on my blog: https://csharp.today/LucidCode
 
 [![Build Status](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_apis/build/status/csharp-today.LucidCode?branchName=master)](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_build/latest?definitionId=8&branchName=master) [![NuGet Version](https://img.shields.io/nuget/v/LucidCode)](https://www.nuget.org/packages/LucidCode/) [![NuGet Downloads](https://img.shields.io/nuget/dt/LucidCode)](https://www.nuget.org/packages/LucidCode/)
 
