@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "nuke.globaltool": {
+      "version": "9.0.3",
+      "commands": [
+        "nuke"
+      ],
+      "rollForward": false
+    },
+    "gitversion.tool": {
+      "version": "5.8.3",
+      "commands": [
+        "dotnet-gitversion"
+      ],
+      "rollForward": false
+    }
+  }
+}
