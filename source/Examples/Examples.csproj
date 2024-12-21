@@ -18,9 +18,9 @@
     <ProjectReference Include="..\LucidCode\LucidCode.csproj" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="dotnet tool restore" />
-    <Exec Command="dotnet tool run MarkdownCodeEmbed --input ..\RawDocs --code .. --output ..\.." />
-  </Target>
+    <Exec Command="dotnet tool run MarkdownCodeEmbed - -input ..\RawDocs - -code .. - -output ..\.." />
+  </Target>-->
 
 </Project>
