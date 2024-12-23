@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Bojkowski.Commands.Git" Version="0.2.1" />
-    <PackageReference Include="Bojkowski.Nuke" Version="0.1.1" />
+    <PackageReference Include="Bojkowski.Nuke" Version="0.1.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="9.0.0" />
   </ItemGroup>
