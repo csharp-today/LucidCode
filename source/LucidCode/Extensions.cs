@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace LucidCode
 {
@@ -9,6 +10,24 @@ namespace LucidCode
     /// </summary>
     public static class Extensions
     {
+        /// <summary>
+        /// Throws <c ref="ArgumentNullException">exception</c> if value is null. Otherwise, returns the value.
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="value">Value</param>
+        /// <param name="parameterName">Parameter name (used for the exception)</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">Thrown if value is null</exception>
+        public static T FailIfNull<T>(this T value, [CallerArgumentExpression(nameof(value))] string parameterName = null) where T : class
+        {
+            if (value is null)
+            {
+                throw new ArgumentNullException(parameterName);
+            }
+
+            return value;
+        }
+
         /// <summary>
         /// Returns true if object is in collection
         /// </summary>

@@ -2,12 +2,13 @@
 
 LucidCode is a library dedicated to improving code readability.
 
-Article on my blog: https://csharp.today/LucidCode
+Article on my blog: https://csharp.today/post/11728
 
 [![Build Status](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_apis/build/status/csharp-today.LucidCode?branchName=master)](https://dev.azure.com/mariuszbojkowski/Open%20Source%20projects/_build/latest?definitionId=8&branchName=master) [![NuGet Version](https://img.shields.io/nuget/v/LucidCode)](https://www.nuget.org/packages/LucidCode/) [![NuGet Downloads](https://img.shields.io/nuget/dt/LucidCode)](https://www.nuget.org/packages/LucidCode/)
 
 ## Extension methods
 
+* **[FailIfNull](Docs/Extensions/FailIfNull.md)** - Fail if object is null
 * **[In](Docs/Extensions/In.md)** / **[NotIn](Docs/Extensions/NotIn.md)** - Check if object is in collection
 * **[IsNull](Docs/Extensions/IsNull.md)** / **[IsNotNull](Docs/Extensions/IsNotNull.md)** - Check if object is null
 * **[Set](Docs/Extensions/Set.md)** - Execute action on an item and return the item

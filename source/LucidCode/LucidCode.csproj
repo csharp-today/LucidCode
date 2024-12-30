@@ -8,7 +8,7 @@
     <RepositoryType>git</RepositoryType>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Company>Mariusz Bojkowski</Company>
+    <Company>Bojkowski.IT sp zoo</Company>
     <Authors>Mariusz Bojkowski</Authors>
     <Description>
 LucidCode is a library dedicated to improving code readability.
