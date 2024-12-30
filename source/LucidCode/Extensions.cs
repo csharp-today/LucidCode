@@ -18,7 +18,7 @@ namespace LucidCode
         /// <param name="parameterName">Parameter name (used for the exception)</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">Thrown if value is null</exception>
-        public static T FailIfNull<T>(this T value, [CallerArgumentExpression(nameof(value))] string parameterName = null) where T : class
+        public static T FailIfNull<T>(this T? value, [CallerArgumentExpression(nameof(value))] string? parameterName = null) where T : class
         {
             if (value is null)
             {
@@ -84,13 +84,13 @@ namespace LucidCode
         /// <summary>
         /// Returns null if string is empty, otherwise the string value
         /// </summary>
-        public static string ToNullIfEmpty(this string value) => string.IsNullOrEmpty(value) ? null : value;
+        public static string? ToNullIfEmpty(this string? value) => string.IsNullOrEmpty(value) ? null : value;
 
         /// <summary>
         /// Returns null if string is white space, otherwise the string value
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ToNullIfWhiteSpace(this string value) => string.IsNullOrWhiteSpace(value) ? null : value;
+        public static string? ToNullIfWhiteSpace(this string? value) => string.IsNullOrWhiteSpace(value) ? null : value;
     }
 }
