@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace LucidCode
 {
@@ -11,7 +12,7 @@ namespace LucidCode
     public static class Extensions
     {
         /// <summary>
-        /// Throws <c ref="ArgumentNullException">exception</c> if value is null. Otherwise, returns the value.
+        /// Throws <see cref="ArgumentNullException" /> if value is null. Otherwise, returns the value.
         /// </summary>
         /// <typeparam name="T">Value type</typeparam>
         /// <param name="value">Value</param>
@@ -92,5 +93,16 @@ namespace LucidCode
         /// <param name="value"></param>
         /// <returns></returns>
         public static string? ToNullIfWhiteSpace(this string? value) => string.IsNullOrWhiteSpace(value) ? null : value;
+
+        /// <summary>
+        /// Await for a string and write it to <see cref="Console" /> using <see cref="Console.WriteLine()" /> method
+        /// </summary>
+        /// <param name="textAsync">Task returning string</param>
+        /// <returns>Task</returns>
+        public static async Task WriteToConsoleAsync(this Task<string> textAsync)
+        {
+            var text = await textAsync;
+            Console.WriteLine(text);
+        }
     }
 }

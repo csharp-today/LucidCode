@@ -14,6 +14,7 @@ Article on my blog: https://csharp.today/post/11728
 * **[Set](Docs/Extensions/Set.md)** - Execute action on an item and return the item
 * **[ToNullIfEmpty](Docs/Extensions/ToNullIfEmpty.md)** - Return null if string is empty string
 * **[ToNullIfWhiteSpace](Docs/Extensions/ToNullIfWhiteSpace.md)** - Return null if string is white space
+* **[WriteToConsoleAsync](Docs/Extensions/WriteToConsoleAsync.md)** - Await for a string and write it to Console
 
 ## LucidTest - Support **Arrange Act Assert** pattern
 
