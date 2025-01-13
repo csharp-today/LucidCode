@@ -30,6 +30,24 @@ namespace LucidCode
         }
 
         /// <summary>
+        /// Throws <see cref="ArgumentNullException" /> if value is null. Otherwise, returns the value.
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <param name="value">Value</param>
+        /// <param name="parameterName">Parameter name (used for the exception)</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">Thrown if value is null</exception>
+        public static T FailIfNull<T>(this Nullable<T> value, [CallerArgumentExpression(nameof(value))] string? parameterName = null) where T : struct
+        {
+            if (value is null || value.IsNull())
+            {
+                throw new ArgumentNullException(parameterName);
+            }
+
+            return value.Value;
+        }
+
+        /// <summary>
         /// Returns true if object is in collection
         /// </summary>
         public static bool In<T>(this T item, params T[] collection) => collection.Contains(item);
